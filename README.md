@@ -1,6 +1,8 @@
 # Ex-5-RECOGNITION-OF-THE-GRAMMAR-anb-where-n-10-USING-YACC
-RECOGNITION OF THE GRAMMAR(anb where n>=10) USING YACC
-# Date: 23.04.2025
+## RECOGNITION OF THE GRAMMAR(anb where n>=10) USING YACC
+# Name : Surjith D
+# Reg No: 212223043006
+# Date: 30-04-2025
 # Aim:
 To write a YACC program to recognize the grammar anb where n>=10.
 # ALGORITHM
@@ -13,56 +15,54 @@ To write a YACC program to recognize the grammar anb where n>=10.
 7.	Compile these with the C compiler as gcc lex.yy.c y.tab.c
 8.	Enter a string as input and it is identified as valid or invalid.
 # PROGRAM:
+### Grammar.l
 ```
-// EXP5.l file
 %{
-/* Definition section */ #include "y.tab.h"
+#include "y.tab.h"
 %}
 
-/* Rule Section */
 %%
-[aA] {return A;}
-[bB] {return B;}
-\n {return NL;}
-. {return yytext[0];}
+a    { return A; }  // Recognize 'a' as token A
+b    { return B; }  // Recognize 'b' as token B
+.    { return 0; }  // End of input
 %%
 
-int yywrap()
-{
-return 1;
+int yywrap() {
+    return 1;
 }
-// EXP5.y file
+```
 
+
+### Grammar.y
+```
 %{
-/* Definition section */
-#include<stdio.h> 
-#include<stdlib.h>
+#include <stdio.h>
+int yylex(void);
+void yyerror(const char *s);
 %}
 
-%token A B NL
+%token A B
 
-/* Rule Section */
 %%
-stmt: S NL { printf("valid string\n");
-exit(0); }
-;
-S: A S B |;
+S   : A A A A A A A A A A B    { printf("Valid string\n"); }
+    | A S B                    { printf("Valid string\n"); }
+    ;
+
 %%
 
-int yyerror(char *msg)
-{
-printf("invalid string\n"); exit(0);
-}
-int main()
-{
-printf("enter the string\n"); yyparse();
+int main() {
+    printf("Enter a string:\n");
+    yyparse();
+    return 0;
 }
 
-
+void yyerror(const char *s) {
+    printf("Invalid string\n");
+}
 ```
+
 # OUTPUT
-![379688830-efe62914-544c-47f9-bbe7-a36f581beb6a](https://github.com/user-attachments/assets/0ad9fbad-420d-40ac-85f0-abfbe3b2c634)
-
+![Screenshot from 2025-04-23 22-43-06](https://github.com/user-attachments/assets/09e45273-c8c9-4c20-a7e4-1ec8133513fc)
 
 
 # RESULT
