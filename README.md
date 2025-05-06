@@ -1,7 +1,5 @@
 # Ex-5-RECOGNITION-OF-THE-GRAMMAR-anb-where-n-10-USING-YACC
 ## RECOGNITION OF THE GRAMMAR(anb where n>=10) USING YACC
-# Name : Surjith D
-# Reg No: 212223043006
 # Date: 30-04-2025
 # Aim:
 To write a YACC program to recognize the grammar anb where n>=10.
@@ -32,11 +30,7 @@ b       { return B; }
 int yywrap() {
     return 1;
 }
-
-
 ```
-
-
 ### expr5.y
 ```
 %{
